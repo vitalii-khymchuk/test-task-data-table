@@ -2,8 +2,7 @@ import ReactDOM from "react-dom";
 import { Modal } from "antd";
 import Button from "../Button";
 
-const ModalContainer = ({ isOpen = false, handleCancel, children }) => {
-  console.log(children);
+const ModalContainer = ({ isOpen, handleCancel, children }) => {
   return (
     <Modal
       //   title="Basic Modal"
@@ -16,9 +15,9 @@ const ModalContainer = ({ isOpen = false, handleCancel, children }) => {
   );
 };
 
-const ModalPrototype = ({ children }) => {
+const ModalPrototype = (props) => {
   return ReactDOM.createPortal(
-    <ModalContainer children={children} />,
+    <ModalContainer {...props} />,
     document.querySelector("#popup-root")
   );
 };

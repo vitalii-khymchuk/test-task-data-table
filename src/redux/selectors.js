@@ -5,7 +5,7 @@ const selectAvailableColumns = (state) => state.availableColumns;
 const selectSelectedColumns = (state) => state.selectedColumns;
 
 const selectFilteredAvailable = createSelector(
-  [selectFilterAvailable, selectSelectedColumns],
+  [selectFilterAvailable, selectAvailableColumns],
   (filter, columns) => {
     return columns.filter(({ key }) =>
       key.toLowerCase().includes(filter.toLowerCase().trim())

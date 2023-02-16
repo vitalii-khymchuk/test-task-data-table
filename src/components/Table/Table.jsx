@@ -11,7 +11,7 @@ const makeColumns = (columnTitles) => {
 };
 
 const DataTable = ({ data }) => {
-  const columnTitles = useSelector(selectSelectedColumns);
+  const columnTitles = useSelector(selectSelectedColumns).items;
   if (!columnTitles.length && !data.length) return <h1>No data for table</h1>;
   const columns = makeColumns(columnTitles);
   return <Table dataSource={data} columns={columns} />;

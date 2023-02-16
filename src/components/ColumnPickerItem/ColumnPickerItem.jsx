@@ -2,16 +2,19 @@ import React from "react";
 import { Draggable } from "@hello-pangea/dnd";
 import { TaskInformation, RemoveBtn } from "./ColumnPickerItem.styled";
 import { AiOutlineClose } from "react-icons/ai";
-import { useDispatch } from "react-redux";
-import { discardColumn, selectColumn } from "../../redux/slice";
 
-const ColumnPickerItem = ({ item, index, isSelected }) => {
-  const dispatch = useDispatch();
+const ColumnPickerItem = ({
+  item,
+  index,
+  isSelected,
+  pickItemByClick,
+  discardItemByClick,
+}) => {
   const onRemoveClick = () => {
-    dispatch(discardColumn(item));
+    discardItemByClick(item);
   };
   const onItemClick = () => {
-    if (!isSelected) dispatch(selectColumn(item));
+    if (!isSelected) pickItemByClick(item);
   };
   const itemName = item.key.toUpperCase();
   return (

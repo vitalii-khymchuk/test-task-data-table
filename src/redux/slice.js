@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  availableColumns: [],
-  selectedColumns: [],
+  availableColumns: { title: "Available", items: [] },
+  selectedColumns: { title: "Picked", items: [] },
   filterAvailable: "",
+  isInit: false,
 };
 
 const contactsSlice = createSlice({
@@ -12,34 +13,25 @@ const contactsSlice = createSlice({
   reducers: {
     initTableColumns: {
       reducer: (state, { payload }) => {
-        state.selectedColumns = payload.splice(0, 4);
-        state.availableColumns = payload;
+        state.selectedColumns.items = payload.splice(0, 4);
+        state.availableColumns.items = payload;
+        state.isInit = true;
       },
     },
-    selectColumn: {
+    setTableColumns: {
       reducer: (state, { payload }) => {
-        state.selectedColumns.push(payload);
-        state.availableColumns = state.availableColumns.filter(
-          ({ id }) => id !== payload.id
-        );
-      },
-    },
-    discardColumn: {
-      reducer: (state, { payload }) => {
-        state.availableColumns.push(payload);
-        state.selectedColumns = state.selectedColumns.filter(
-          ({ id }) => id !== payload.id
-        );
+        state.availableColumns = payload.available;
+        state.selectedColumns = payload.picked;
       },
     },
     setFilter: {
       reducer: (state, { payload }) => {
-        state.filter = payload;
+        state.filterAvailable = payload;
       },
     },
   },
 });
 
-export const { initTableColumns, selectColumn, discardColumn, setFilter } =
+export const { initTableColumns, setTableColumns, setFilter } =
   contactsSlice.actions;
 export { contactsSlice };

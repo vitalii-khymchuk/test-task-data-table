@@ -1,16 +1,11 @@
-import { createSelector } from "@reduxjs/toolkit";
-
 const selectFilterAvailable = (state) => state.filterAvailable;
 const selectAvailableColumns = (state) => state.availableColumns;
 const selectSelectedColumns = (state) => state.selectedColumns;
+const selectIsInit = (state) => state.isInit;
 
-const selectFilteredAvailable = createSelector(
-  [selectFilterAvailable, selectAvailableColumns],
-  (filter, columns) => {
-    return columns.filter(({ key }) =>
-      key.toLowerCase().includes(filter.toLowerCase().trim())
-    );
-  }
-);
-
-export { selectSelectedColumns, selectFilteredAvailable };
+export {
+  selectSelectedColumns,
+  selectAvailableColumns,
+  selectFilterAvailable,
+  selectIsInit,
+};

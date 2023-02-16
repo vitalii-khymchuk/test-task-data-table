@@ -2,6 +2,8 @@ import styled from "@emotion/styled";
 
 const Container = styled.div`
   display: flex;
+  width: 100%;
+  justify-content: space-between;
 `;
 
 const List = styled.div`
@@ -30,4 +32,9 @@ const Title = styled.span`
   align-self: flex-start;
 `;
 
-export { Container, List, ColumnStyles, Title };
+const ApplyBtnWrap = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+export { Container, List, ColumnStyles, Title, ApplyBtnWrap };

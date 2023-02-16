@@ -1,5 +1,5 @@
 import React from "react";
-import { Input } from "antd";
+import { StyledInput } from "./SearchInput.styled";
 import { setFilter } from "../../redux/slice";
 import { useDispatch } from "react-redux";
 
@@ -10,7 +10,7 @@ const SearchInput = () => {
     dispatch(setFilter(value));
   };
   return (
-    <Input
+    <StyledInput
       placeholder="Search available columns..."
       onChange={onInputChange}
       maxLength={15}

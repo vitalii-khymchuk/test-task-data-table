@@ -2,15 +2,12 @@ import styled from "@emotion/styled";
 
 const TaskInformation = styled.div`
   display: flex;
-
   justify-content: space-between;
   align-items: center;
   padding: 0 15px;
-  min-height: 80px;
+  min-height: 60px;
   border-radius: 5px;
-  max-width: 311px;
-  /* background: ${({ isDragging }) =>
-    isDragging ? "rgba(255, 59, 59, 0.15)" : "white"}; */
+  width: 90%;
   background: white;
   margin-top: 15px;
 `;

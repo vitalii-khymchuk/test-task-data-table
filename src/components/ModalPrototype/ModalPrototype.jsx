@@ -1,15 +1,15 @@
 import ReactDOM from "react-dom";
 import { Modal } from "antd";
-import Button from "../Button";
+import PropTypes from "prop-types";
 
 const ModalContainer = ({ isOpen, handleCancel, children }) => {
   return (
     <Modal
-      //   title="Basic Modal"
       open={isOpen}
       onCancel={handleCancel}
       footer={[]}
-      width={860}
+      width={840}
+      bodyStyle={{ overflowX: "auto", overflowY: "hidden", height: "600px" }}
     >
       {children}
     </Modal>
@@ -23,8 +23,10 @@ const ModalPrototype = (props) => {
   );
 };
 
-export default ModalPrototype;
+ModalContainer.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  handleCancel: PropTypes.func,
+  children: PropTypes.node,
+};
 
-//    <p>Some contents...</p>
-//       <p>Some contents...</p>
-//       <p>Some contents...</p>
+export default ModalPrototype;

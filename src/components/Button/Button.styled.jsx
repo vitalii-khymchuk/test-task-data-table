@@ -3,7 +3,11 @@ import styled from "@emotion/styled";
 
 const StyledButton = styled(Button)`
   background-color: violet;
-  margin-bottom: 15px;
+  color: white;
+  &:hover,
+  &:focus {
+    background-color: #f3a5f3 !important;
+  }
 `;
 
 export { StyledButton };

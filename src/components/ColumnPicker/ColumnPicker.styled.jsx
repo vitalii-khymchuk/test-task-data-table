@@ -1,27 +1,25 @@
 import styled from "@emotion/styled";
 
 const Container = styled.div`
-  display: flex;
   width: 100%;
-  justify-content: space-between;
 `;
 
 const List = styled.div`
-  min-height: 100px;
+  overflow-y: auto;
+  max-height: 450px;
   display: flex;
   flex-direction: column;
   background: #f3f3f3;
-  min-width: 341px;
+  width: 45%;
   border-radius: 5px;
   padding: 15px 15px;
-  margin-right: 45px;
 `;
 
 const ColumnStyles = styled.div`
-  margin: 8px;
   display: flex;
+  justify-content: space-between;
   width: 100%;
-  min-height: 80vh;
+  min-height: 500px;
 `;
 
 const Title = styled.span`
@@ -35,6 +33,7 @@ const Title = styled.span`
 const ApplyBtnWrap = styled.div`
   display: flex;
   justify-content: flex-end;
+  margin-top: 16px;
 `;
 
 export { Container, List, ColumnStyles, Title, ApplyBtnWrap };

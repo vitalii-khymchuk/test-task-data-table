@@ -8,17 +8,17 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { initTableColumns } from "../redux/slice";
 import { useSelector } from "react-redux";
-import {isInit} from '../redux/selectors'
+import { selectIsInit } from "../redux/selectors";
 
 const App = () => {
-  const isInit = useSelector(isInit)
   //Inits column titles
+  const isInit = useSelector(selectIsInit);
   const dispatch = useDispatch();
   useEffect(() => {
     if (isInit) return;
     const columnTitles = Object.keys(data[0]).map((key) => ({ key, id: key }));
     dispatch(initTableColumns(columnTitles));
-  }, [dispatch]);
+  }, [dispatch, isInit]);
   return (
     <Particle>
       <Dashboard>

@@ -1,8 +1,9 @@
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import { ParticleContainer } from "./Particle.styled";
+import PropTypes from "prop-types";
 
-export default function Particle({ children }) {
+const Particle = ({ children }) => {
   const particlesInit = async (main) => {
     await loadFull(main);
   };
@@ -83,4 +84,10 @@ export default function Particle({ children }) {
       {children}
     </ParticleContainer>
   );
-}
+};
+
+Particle.propTypes = {
+  children: PropTypes.node,
+};
+
+export default Particle;

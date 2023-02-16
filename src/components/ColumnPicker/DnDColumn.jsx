@@ -3,6 +3,7 @@ import { List, Title } from "./ColumnPicker.styled";
 import { Droppable } from "@hello-pangea/dnd";
 import { useSelector } from "react-redux";
 import { selectFilterAvailable } from "../../redux/selectors";
+import PropTypes from "prop-types";
 
 const DnDColumn = ({
   columnId,
@@ -38,6 +39,21 @@ const DnDColumn = ({
       )}
     </Droppable>
   );
+};
+
+DnDColumn.propTypes = {
+  columnId: PropTypes.string.isRequired,
+  column: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    items: PropTypes.arrayOf(
+      PropTypes.shape({
+        key: PropTypes.string.isRequired,
+        id: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+  }).isRequired,
+  pickItemByClick: PropTypes.func,
+  discardItemByClick: PropTypes.func,
 };
 
 export default DnDColumn;

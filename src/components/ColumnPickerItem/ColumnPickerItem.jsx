@@ -2,6 +2,7 @@ import React from "react";
 import { Draggable } from "@hello-pangea/dnd";
 import { TaskInformation, RemoveBtn } from "./ColumnPickerItem.styled";
 import { AiOutlineClose } from "react-icons/ai";
+import PropTypes from "prop-types";
 
 const ColumnPickerItem = ({
   item,
@@ -37,6 +38,17 @@ const ColumnPickerItem = ({
       )}
     </Draggable>
   );
+};
+
+ColumnPickerItem.propTypes = {
+  item: PropTypes.shape({
+    key: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+  }).isRequired,
+  index: PropTypes.number.isRequired,
+  isSelected: PropTypes.bool.isRequired,
+  pickItemByClick: PropTypes.func,
+  discardItemByClick: PropTypes.func,
 };
 
 export default ColumnPickerItem;

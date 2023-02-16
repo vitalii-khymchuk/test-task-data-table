@@ -10,6 +10,7 @@ import {
 import { setTableColumns } from "../../redux/slice";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 const ColumnPicker = ({ closeModal }) => {
   const dispatch = useDispatch();
@@ -110,6 +111,10 @@ const ColumnPicker = ({ closeModal }) => {
       </ApplyBtnWrap>
     </>
   );
+};
+
+ColumnPicker.propTypes = {
+  closeModal: PropTypes.func,
 };
 
 export default ColumnPicker;

@@ -1,47 +1,19 @@
 import React from "react";
 import { Draggable } from "@hello-pangea/dnd";
-import styled from "@emotion/styled";
-// import CustomAvatar from '../TableComponents/CustomAvatar'
-// import { ReactComponent as RedArrow } from '../../assets/icons/High.svg'
-// import { ReactComponent as YellowArrow } from '../../assets/icons/Medium.svg'
-// import { ReactComponent as BlueArrow } from '../../assets/icons/Low.svg'
+import { TaskInformation, RemoveBtn } from "./ColumnPickerItem.styled";
+import { AiOutlineClose } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { discardColumn, selectColumn } from "../../redux/slice";
 
-const TaskInformation = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 0 15px;
-  min-height: 106px;
-  border-radius: 5px;
-  max-width: 311px;
-  /* background: ${({ isDragging }) =>
-    isDragging ? "rgba(255, 59, 59, 0.15)" : "white"}; */
-  background: white;
-  margin-top: 15px;
-
-  .secondary-details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    font-size: 12px;
-    font-weight: 400px;
-    color: #7d7d7d;
-  }
-  /* .priority{ */
-  /* margin-right: 12px; */
-  /* align-self: center;
-    svg{
-      width: 12px !important;
-      height: 12px !important;
-      margin-right: 12px; */
-  /* margin-top: 2px; */
-  /* } */
-  /* } */
-`;
-
-const ColumnPickerItem = ({ item, index }) => {
+const ColumnPickerItem = ({ item, index, isSelected }) => {
+  const dispatch = useDispatch();
+  const onRemoveClick = () => {
+    dispatch(discardColumn(item));
+  };
+  const onItemClick = () => {
+    if (!isSelected) dispatch(selectColumn(item));
+  };
+  const itemName = item.key.toUpperCase();
   return (
     <Draggable key={item.key} draggableId={item.key} index={index}>
       {(provided) => (
@@ -50,18 +22,13 @@ const ColumnPickerItem = ({ item, index }) => {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-          <TaskInformation>
-            <p>{item.key}</p>
-            {/* <div className="secondary-details">
-              <p>
-                <span>
-                  {new Date(item.Due_Date).toLocaleDateString("en-us", {
-                    month: "short",
-                    day: "2-digit",
-                  })}
-                </span>
-              </p>
-            </div> */}
+          <TaskInformation onClick={onItemClick}>
+            <h3>{itemName}</h3>
+            {isSelected && (
+              <RemoveBtn onClick={onRemoveClick}>
+                <AiOutlineClose size={16} />
+              </RemoveBtn>
+            )}
           </TaskInformation>
         </div>
       )}
@@ -70,8 +37,3 @@ const ColumnPickerItem = ({ item, index }) => {
 };
 
 export default ColumnPickerItem;
-
-// <span className="priority">
-// {item.Priority === 'High' ? (<RedArrow />) : item.Priority === 'Medium' ? (<YellowArrow />) : (<BlueArrow />)}
-// </span>
-// <div><CustomAvatar name={item.Assignee} isTable={false} size={16} /></div>

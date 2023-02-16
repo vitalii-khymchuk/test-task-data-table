@@ -9,6 +9,7 @@ const ModalContainer = ({ isOpen, handleCancel, children }) => {
       open={isOpen}
       onCancel={handleCancel}
       footer={[]}
+      width={860}
     >
       {children}
     </Modal>

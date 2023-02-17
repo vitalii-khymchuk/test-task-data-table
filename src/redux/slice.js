@@ -1,25 +1,25 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { fetchContacts } from "./operations";
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchContacts } from './operations';
 
 const initialState = {
-  availableColumns: { title: "Available", items: [] },
+  availableColumns: { title: 'Available', items: [] },
   selectedColumns: {
-    title: "Picked",
+    title: 'Picked',
     items: [
-      { key: "name", id: "name" },
-      { key: "email", id: "email" },
-      { key: "phone", id: "phone" },
-      { key: "country", id: "country" },
+      { key: 'name', id: 'name' },
+      { key: 'email', id: 'email' },
+      { key: 'phone', id: 'phone' },
+      { key: 'country', id: 'country' },
     ],
   },
   data: [],
   isLoading: false,
   error: null,
-  filterAvailable: "",
+  filterAvailable: '',
 };
 
 const contactsSlice = createSlice({
-  name: "contacts",
+  name: 'contacts',
   initialState,
   reducers: {
     initTableColumns: {
@@ -40,13 +40,13 @@ const contactsSlice = createSlice({
       },
     },
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
       .addCase(fetchContacts.fulfilled, (state, { payload }) => {
         state.data = payload;
         state.isLoading = false;
       })
-      .addCase(fetchContacts.pending, (state) => {
+      .addCase(fetchContacts.pending, state => {
         state.isLoading = true;
         state.error = null;
       })

@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 const Container = styled.div`
   width: 100%;
@@ -6,6 +6,7 @@ const Container = styled.div`
 
 const List = styled.div`
   overflow-y: auto;
+  overflow-x: hidden;
   max-height: 450px;
   display: flex;
   flex-direction: column;

@@ -6,7 +6,6 @@ import Error from './Error';
 import { Spin } from 'antd';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { initTableColumns } from '../redux/slice';
 import { useSelector } from 'react-redux';
 import {
   selectAllColumns,
@@ -15,34 +14,20 @@ import {
   selectIsLoading,
 } from '../redux/selectors';
 import { fetchContacts } from '../redux/operations';
-import { isEqual } from 'lodash';
-import { nanoid } from 'nanoid';
-
-const shouldUpdColumns = (a, b) => {
-  const setA = new Set(a);
-  const setB = new Set(b);
-  return !isEqual(setA, setB);
-};
+import { updColumnHeaders } from '../utils/updColumns';
 
 const App = () => {
+  const dispatch = useDispatch();
   const data = useSelector(selectFetchedData);
   const error = useSelector(selectError);
   const isLoading = useSelector(selectIsLoading);
   const currentColumnsTitles = useSelector(selectAllColumns);
-
-  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
   //Inits column titles, if column titles wasnt changed after fetch data, they save own state after reloading
   useEffect(() => {
-    if (!data.length) return;
-    const newColumnTitles = Object.keys(data[0]).map(key => ({
-      key,
-      id: nanoid(),
-    }));
-    if (!shouldUpdColumns(newColumnTitles, currentColumnsTitles)) return;
-    dispatch(initTableColumns(newColumnTitles));
+    updColumnHeaders(dispatch, data, currentColumnsTitles);
   }, [dispatch, data, currentColumnsTitles]);
   return (
     <Particle>

@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 const Container = styled.div`
   background-color: white;
@@ -20,6 +20,7 @@ const Container = styled.div`
     margin-right: 40px;
   }
   @media screen and (min-width: 1280px) {
+    width: 1200px;
     margin-left: auto;
     margin-right: auto;
   } ;

@@ -9,7 +9,7 @@ const Container = styled.div`
   width: 100%;
   max-width: 1280px;
   min-height: 700px;
-  max-height: 100vh;
+  max-height: calc(100vh - 100px);
   overflow: auto;
   @media screen and (min-width: 480px) and (max-width: 1023px) {
     margin-left: 20px;
@@ -18,11 +18,13 @@ const Container = styled.div`
   @media screen and (min-width: 1024px) and (max-width: 1279px) {
     margin-left: 40px;
     margin-right: 40px;
+    max-height: 600px;
   }
   @media screen and (min-width: 1280px) {
     width: 1200px;
     margin-left: auto;
     margin-right: auto;
+    max-height: 800px;
   } ;
 `;
 

@@ -1,22 +1,22 @@
-import Particle from "./Particle";
-import Dashboard from "./Dashboard";
-import DataTable from "./Table";
-import FilterModal from "./FilterModal/FilterModal";
-import Error from "./Error";
-import { Spin } from "antd";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { initTableColumns } from "../redux/slice";
-import { useSelector } from "react-redux";
+import Particle from './Particle';
+import Dashboard from './Dashboard';
+import DataTable from './Table';
+import FilterModal from './FilterModal/FilterModal';
+import Error from './Error';
+import { Spin } from 'antd';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { initTableColumns } from '../redux/slice';
+import { useSelector } from 'react-redux';
 import {
   selectAllColumns,
   selectFetchedData,
   selectError,
   selectIsLoading,
-} from "../redux/selectors";
-import { fetchContacts } from "../redux/operations";
-import { isEqual } from "lodash";
-import { nanoid } from "nanoid";
+} from '../redux/selectors';
+import { fetchContacts } from '../redux/operations';
+import { isEqual } from 'lodash';
+import { nanoid } from 'nanoid';
 
 const shouldUpdColumns = (a, b) => {
   const setA = new Set(a);
@@ -33,17 +33,17 @@ const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchContacts());
-  }, []);
+  }, [dispatch]);
   //Inits column titles, if column titles wasnt changed after fetch data, they save own state after reloading
   useEffect(() => {
     if (!data.length) return;
-    const newColumnTitles = Object.keys(data[0]).map((key) => ({
+    const newColumnTitles = Object.keys(data[0]).map(key => ({
       key,
       id: nanoid(),
     }));
     if (!shouldUpdColumns(newColumnTitles, currentColumnsTitles)) return;
     dispatch(initTableColumns(newColumnTitles));
-  }, [dispatch, data]);
+  }, [dispatch, data, currentColumnsTitles]);
   return (
     <Particle>
       <Dashboard>

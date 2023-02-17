@@ -8,7 +8,9 @@ const Container = styled.div`
   border-radius: 8px;
   width: 100%;
   max-width: 1280px;
-  min-height: 200px;
+  min-height: 700px;
+  max-height: 100vh;
+  overflow: auto;
   @media screen and (min-width: 480px) and (max-width: 1023px) {
     margin-left: 20px;
     margin-right: 20px;

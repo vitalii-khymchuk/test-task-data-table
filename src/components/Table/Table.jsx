@@ -14,7 +14,7 @@ const makeColumns = (columnTitles) => {
 const DataTable = ({ data }) => {
   const columnTitles = useSelector(selectSelectedColumns).items;
   const columns = makeColumns(columnTitles);
-  return <StyledTable dataSource={data} columns={columns} />;
+  return <StyledTable dataSource={data} columns={columns} rowKey="id" />;
 };
 
 DataTable.propTypes = {
